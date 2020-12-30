@@ -12,8 +12,8 @@ static const char dmenufont[]       = "iosevka:size=10.5";
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#282828";
 static const char col_gray3[]       = "#ebdbb2";
-static const char col_gray4[]       = "#282828";
-static const char col_cyan[]        = "#ebdbb2";
+static const char col_gray4[]       = "#ebdbb2";
+static const char col_cyan[]        = "#458588";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -69,6 +69,8 @@ static const char *audiomute[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "t
 static const char *micmute[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL};
 static const char *fullscreenshot[] = {"fullscreenshot", NULL};
 static const char *windowscreenshot[] = {"windowscreenshot", NULL}; 
+static const char *emacs[] = {"emacs", NULL};
+static const char *ranger[] = {"alacritty", "-e", "ranger", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -80,6 +82,8 @@ static Key keys[] = {
     { 0, XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = emacs } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = ranger } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
