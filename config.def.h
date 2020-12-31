@@ -70,6 +70,7 @@ static const char *micmute[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@", 
 static const char *fullscreenshot[] = {"fullscreenshot", NULL};
 static const char *windowscreenshot[] = {"windowscreenshot", NULL}; 
 static const char *emacs[] = {"emacs", NULL};
+static const char *qutebrowser[] = {"qutebrowser", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -82,6 +83,7 @@ static Key keys[] = {
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = emacs } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = qutebrowser } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
