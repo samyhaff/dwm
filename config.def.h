@@ -28,11 +28,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "qutebrowser",  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "discord",  NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "zoom",     NULL,       NULL,       1 << 3,       0,           -1 },
+	/* class      instance    title       tags mask     iscenterd    isfloating   monitor */
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,            0,           -1 },
+	{ "qutebrowser",  NULL,   NULL,       1 << 1,       0,            0,           -1 },
+	{ "discord",  NULL,       NULL,       1 << 2,       0,            0,           -1 },
+	{ "zoom",     NULL,       NULL,       1 << 3,       0,            0,           -1 },
 };
 
 /* layout(s) */
