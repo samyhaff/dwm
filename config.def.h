@@ -13,8 +13,8 @@ static const char dmenufont[]       = "iosevka:size=10.5";
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#282828";
 static const char col_gray3[]       = "#ebdbb2";
-static const char col_gray4[]       = "#ebdbb2";
-static const char col_cyan[]        = "#9d0006";
+static const char col_gray4[]       = "#282828";
+static const char col_cyan[]        = "#458588";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -29,11 +29,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     iscenterd    isfloating   monitor */
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,            0,           -1 },
-	{ "qutebrowser",  NULL,   NULL,       1 << 1,       0,            0,           -1 },
-	{ "discord",  NULL,       NULL,       1 << 2,       0,            0,           -1 },
-	{ "zoom",     NULL,       NULL,       1 << 3,       0,            0,           -1 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "qutebrowser",  NULL,   NULL,       1 << 1,       0,           -1 },
+	{ "discord",  NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "zoom",     NULL,       NULL,       1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
@@ -72,6 +72,7 @@ static const char *micmute[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@", 
 static const char *fullscreenshot[] = {"fullscreenshot", NULL};
 static const char *windowscreenshot[] = {"windowscreenshot", NULL}; 
 static const char *firefox[] = {"firefox", NULL};
+static const char *qutebrowser[] = {"qutebrowser", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -84,7 +85,9 @@ static Key keys[] = {
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = firefox } },
+    { MODKEY,			            XK_e,	   spawn,	       SHCMD("alacritty -e lf") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("alacritty -e $(dmenu_path | dmenu)") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
