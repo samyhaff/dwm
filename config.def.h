@@ -84,7 +84,7 @@ static Key keys[] = {
     { 0, XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
-	{ MODKEY,                       XK_n,      spawn,          {.v = firefox } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = qutebrowser } },
     { MODKEY,			            XK_e,	   spawn,	       SHCMD("alacritty -e lf") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_s,      spawn,          SHCMD("alacritty -e $(dmenu_path | dmenu)") },
