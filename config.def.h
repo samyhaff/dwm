@@ -63,7 +63,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *brightnessup[] = {"backlight.sh", "-inc", "2", NULL};
 static const char *brightnessdown[] = {"backlight.sh", "-dec", "2", NULL};
 static const char *volumeup[] = {"volume.py", "inc", "5", NULL};
@@ -86,9 +86,9 @@ static Key keys[] = {
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
 	{ MODKEY,                       XK_n,      spawn,          SHCMD("brave -force-device-scale-factor=1.4") },
-    { MODKEY,			            XK_e,	   spawn,	       SHCMD("alacritty -e lf") },
+    { MODKEY,			            XK_e,	   spawn,	       SHCMD("st -e lf") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_s,      spawn,          SHCMD("alacritty -e $(dmenu_path | dmenu)") },
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("st -e $(dmenu_path | dmenu)") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },

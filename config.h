@@ -4,6 +4,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -12,8 +13,8 @@ static const char dmenufont[]       = "iosevka:size=10.5";
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#282828";
 static const char col_gray3[]       = "#ebdbb2";
-static const char col_gray4[]       = "#ebdbb2";
-static const char col_cyan[]        = "#9d0006";
+static const char col_gray4[]       = "#282828";
+static const char col_cyan[]        = "#458588";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -28,11 +29,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     iscenterd    isfloating   monitor */
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,            0,           -1 },
-	{ "qutebrowser",  NULL,   NULL,       1 << 1,       0,            0,           -1 },
-	{ "discord",  NULL,       NULL,       1 << 2,       0,            0,           -1 },
-	{ "zoom",     NULL,       NULL,       1 << 3,       0,            0,           -1 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "qutebrowser", NULL,    NULL,       1 << 1,       0,           -1 },
+	{ "Brave-browser", NULL,  NULL,       1 << 1,       0,           -1 },
+	{ "discord",  NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "zoom",     NULL,       NULL,       1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
@@ -61,7 +63,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *brightnessup[] = {"backlight.sh", "-inc", "2", NULL};
 static const char *brightnessdown[] = {"backlight.sh", "-dec", "2", NULL};
 static const char *volumeup[] = {"volume.py", "inc", "5", NULL};
@@ -71,6 +73,7 @@ static const char *micmute[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@", 
 static const char *fullscreenshot[] = {"fullscreenshot", NULL};
 static const char *windowscreenshot[] = {"windowscreenshot", NULL}; 
 static const char *firefox[] = {"firefox", NULL};
+static const char *qutebrowser[] = {"qutebrowser", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -82,8 +85,10 @@ static Key keys[] = {
     { 0, XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
-	{ MODKEY,                       XK_n,      spawn,          {.v = firefox } },
+	{ MODKEY,                       XK_n,      spawn,          SHCMD("brave -force-device-scale-factor=1.4") },
+    { MODKEY,			            XK_e,	   spawn,	       SHCMD("st -e lf") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("st -e $(dmenu_path | dmenu)") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
