@@ -86,7 +86,7 @@ static Key keys[] = {
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
 	{ MODKEY,                       XK_n,      spawn,          SHCMD("brave -force-device-scale-factor=1.4") },
-    { MODKEY,			            XK_e,	   spawn,	       SHCMD("st -e lf") },
+    { MODKEY,			            XK_e,	   spawn,	       SHCMD("st -e ranger") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_s,      spawn,          SHCMD("st -e $(dmenu_path | dmenu)") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
