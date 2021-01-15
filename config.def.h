@@ -21,9 +21,21 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "120x34", "-e", "ranger", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	{"spranger",    spcmd2},
+	{"keepassxc",   spcmd3},
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -35,6 +47,8 @@ static const Rule rules[] = {
 	{ "Brave-browser", NULL,  NULL,       1 << 1,       0,           -1 },
 	{ "discord",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "zoom",     NULL,       NULL,       1 << 3,       0,           -1 },
+	{ NULL,		  "spterm",   NULL,		  SPTAG(0),		1,			 -1 },
+	{ NULL,		  "spranger", NULL,		  SPTAG(1),		1,			 -1 },
 };
 
 /* layout(s) */
@@ -75,6 +89,7 @@ static const char *windowscreenshot[] = {"windowscreenshot", NULL};
 static const char *firefox[] = {"firefox", NULL};
 static const char *qutebrowser[] = {"qutebrowser", NULL};
 
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
     { 0, XK_Print, spawn, {.v = fullscreenshot } },
@@ -111,6 +126,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
+	{ MODKEY,            			XK_r,	   togglescratch,  {.ui = 1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -136,7 +153,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
