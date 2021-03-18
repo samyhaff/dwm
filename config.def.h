@@ -10,12 +10,12 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "iosevka:size=9.5", "FontAwesome:size=9.5",};
 static const char dmenufont[]       = "iosevka:size=10.5";
-static const char col_gray1[]       = "#282c34";
-static const char col_gray2[]       = "#282c34";
-static const char col_gray3[]       = "#abb2bf";
-static const char col_gray4[]       = "#282c34";
-static const char col_cyan[]        = "#98c379";
-static const char col_border[]      = "#4b5263";
+static const char col_gray1[]       = "#0f1419";
+static const char col_gray2[]       = "#0f1419";
+static const char col_gray3[]       = "#e6e1cf";
+static const char col_gray4[]       = "#0f1419";
+static const char col_cyan[]        = "#36a3d9";
+static const char col_border[]      = "#323232";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_border },
