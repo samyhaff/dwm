@@ -22,18 +22,6 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan   },
 };
 
-typedef struct {
-	const char *name;
-	const void *cmd;
-} Sp;
-const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {"st", "-n", "spfm", "-g", "120x34", "-e", "ranger", NULL };
-static Sp scratchpads[] = {
-	/* name          cmd  */
-	{"spterm",      spcmd1},
-	{"spfm",        spcmd2},
-};
-
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 // "Noto Sans CJK JP:style=Regular:size=8"
@@ -45,12 +33,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "qutebrowser", NULL,    NULL,       1 << 1,       0,           -1 },
-	{ "Brave-browser", NULL,  NULL,       1 << 1,       0,           -1 },
 	{ "discord",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "zoom",     NULL,       NULL,       1 << 3,       0,           -1 },
-	{ NULL,		  "spterm",   NULL,		  SPTAG(0),		1,			 -1 },
-	{ NULL,		  "spfm", NULL,		  SPTAG(1),		1,			 -1 },
 };
 
 /* layout(s) */
@@ -103,6 +87,7 @@ static Key keys[] = {
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
 	{ MODKEY,                       XK_n,      spawn,          SHCMD("firefox") },
+	{ MODKEY,                       XK_o,      spawn,          SHCMD("open") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -126,8 +111,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
-	{ MODKEY,            			XK_r,	   togglescratch,  {.ui = 1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
