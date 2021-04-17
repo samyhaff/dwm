@@ -8,8 +8,8 @@ static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "iosevka:size=9.5", "FontAwesome:size=9.5",};
-static const char dmenufont[]       = "iosevka:size=10.5";
+static const char *fonts[]          = { "DejaVu Sans Mono:size=9", "FontAwesome:size=9",};
+static const char dmenufont[]       = "iosevka:size=9.5";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -63,7 +63,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "tabbed", "-r", "2", "st", "-w", "''", NULL };
 static const char *brightnessup[] = {"backlight.sh", "-inc", "2", NULL};
 static const char *brightnessdown[] = {"backlight.sh", "-dec", "2", NULL};
 static const char *volumeup[] = {"volume.py", "inc", "5", NULL};
@@ -73,7 +73,7 @@ static const char *micmute[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@", 
 static const char *fullscreenshot[] = {"fullscreenshot", NULL};
 static const char *windowscreenshot[] = {"windowscreenshot", NULL}; 
 static const char *firefox[] = {"firefox", NULL};
-static const char *qutebrowser[] = {"qutebrowser", NULL};
+static const char *thunar[] = {"thunar", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -85,8 +85,10 @@ static Key keys[] = {
     { 0, XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
-	{ MODKEY,                       XK_n,      spawn,          SHCMD("firefox") },
+	{ MODKEY,                       XK_n,      spawn,          {.v = firefox } },
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("open") },
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("passmenu") },
+	{ MODKEY,                       XK_e,      spawn,          {.v = thunar } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
