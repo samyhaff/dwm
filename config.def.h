@@ -4,12 +4,12 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 0;        /* gaps between windows */
+static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "DejaVu Sans Mono:size=9", "FontAwesome:size=9",};
-static const char dmenufont[]       = "iosevka:size=9.5";
+static const char *fonts[]          = { "DejaVu Sans Mono:size=8", "FontAwesome:size=8",};
+static const char dmenufont[]       = "DejaVu Sans Mono:size=9";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -23,7 +23,8 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+/* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
+static const char *tags[] = { "1", "2", "3", "4", "5", "6"};
 // "Noto Sans CJK JP:style=Regular:size=8"
 // static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 static const Rule rules[] = {
@@ -63,17 +64,22 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
-static const char *termcmd[]  = { "tabbed", "-r", "2", "st", "-w", "''", NULL };
-static const char *brightnessup[] = {"backlight.sh", "-inc", "2", NULL};
-static const char *brightnessdown[] = {"backlight.sh", "-dec", "2", NULL};
-static const char *volumeup[] = {"volume.py", "inc", "5", NULL};
-static const char *volumedown[] = {"volume.py", "dec", "5", NULL};
-static const char *audiomute[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL};
-static const char *micmute[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL};
-static const char *fullscreenshot[] = {"fullscreenshot", NULL};
-static const char *windowscreenshot[] = {"windowscreenshot", NULL}; 
-static const char *firefox[] = {"firefox", NULL};
-static const char *thunar[] = {"thunar", NULL};
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *brightnessup[] = { "backlight.sh", "-inc", "2", NULL };
+static const char *brightnessdown[] = { "backlight.sh", "-dec", "2", NULL };
+static const char *volumeup[] = { "volume.py", "inc", "5", NULL };
+static const char *volumedown[] = { "volume.py", "dec", "5", NULL };
+static const char *audiomute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *micmute[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+static const char *fullscreenshot[] = { "fullscreenshot", NULL };
+static const char *windowscreenshot[] = { "windowscreenshot", NULL }; 
+static const char *firefox[] = { "firefox", NULL };
+static const char *thunar[] = { "thunar", NULL };
+static const char *lf[] = { "alacritty", "-e", "lf", NULL };
+static const char *spotify[] = { "spotify", NULL };
+static const char *music_next[] = { "playerctl", "next", NULL };
+static const char *music_previous[] = { "playerctl", "previous", NULL };
+static const char *music_toggle[] = { "playerctl", "play-pause", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -88,8 +94,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_n,      spawn,          {.v = firefox } },
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("open") },
 	{ MODKEY,                       XK_p,      spawn,          SHCMD("passmenu") },
-	{ MODKEY,                       XK_e,      spawn,          {.v = thunar } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = lf } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = spotify } },
+	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = music_next } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = music_previous } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = music_toggle } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
