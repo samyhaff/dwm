@@ -3,13 +3,13 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 0;        /* gaps between windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:size=9.5", "FontAwesome:size=8",};
-static const char dmenufont[]       = "Terminus:size=10";
+static const char *fonts[]          = { "Fira Code:size=8", "FontAwesome:size=8",};
+static const char dmenufont[]       = "Fira Code:size=9";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -27,7 +27,8 @@ static char *colors[][3] = {
 // "Noto Sans CJK JP:style=Regular:size=8"
 // static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 /* static const char *tags[] = { "1", "2", "3", "4", "5", "6"}; */
-static const char *tags[] = { "term", "www", "msg", "work", "spt", "misc"};
+/* static const char *tags[] = { "term", "www", "msg", "work", "spt", "misc"}; */
+static const char *tags[] = { "", "", "", "", "", ""};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -67,10 +68,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *brightnessup[] = { "backlight.sh", "-inc", "2", NULL };
-static const char *brightnessdown[] = { "backlight.sh", "-dec", "2", NULL };
-static const char *volumeup[] = { "volume.py", "inc", "5", NULL };
-static const char *volumedown[] = { "volume.py", "dec", "5", NULL };
+static const char *brightnessup[] = { "backlight", "-inc", "2", NULL };
+static const char *brightnessdown[] = { "backlight", "-dec", "2", NULL };
+static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *audiomute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *micmute[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
 static const char *fullscreenshot[] = { "fullscreenshot", NULL };
@@ -134,9 +135,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_apostrophe,                    3)
 	TAGKEYS(                        XK_parenleft,                     4)
 	TAGKEYS(                        XK_minus,                         5)
-	TAGKEYS(                        XK_egrave,                        6)
-	TAGKEYS(                        XK_underscore,                    7)
-	TAGKEYS(                        XK_ccedilla,                      8)
+	/* TAGKEYS(                        XK_egrave,                        6) */
+	/* TAGKEYS(                        XK_underscore,                    7) */
+	/* TAGKEYS(                        XK_ccedilla,                      8) */
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
